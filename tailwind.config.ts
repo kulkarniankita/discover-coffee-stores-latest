@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        gradient: "url('/static/background.png')",
+      },
       colors: {
         purple: {
           951: 'rgba(79, 70, 229, 1)',
