@@ -24,3 +24,20 @@ export const fetchCoffeeStores = async () => {
     console.error('Error while fetching coffee stores', error);
   }
 };
+
+export const fetchCoffeeStore = async (id: string) => {
+  try {
+    const response = await fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${id}.json?proximity=ip&access_token=${process.env.MAPBOX_API}`
+    );
+    const data = await response.json();
+
+    const coffeeStore = data.features.map((result: MapboxType) =>
+      transformCoffeeData(result)
+    );
+
+    return coffeeStore.length > 0 ? coffeeStore[0] : {};
+  } catch (error) {
+    console.error('Error while fetching coffee stores', error);
+  }
+};
