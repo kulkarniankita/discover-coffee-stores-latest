@@ -5,8 +5,10 @@ import { MouseEventHandler } from 'react';
 
 const Banner = ({
   handleOnClick,
+  buttonText,
 }: {
   handleOnClick: MouseEventHandler<HTMLButtonElement> | undefined;
+  buttonText: string;
 }) => {
   return (
     <div className="mb-12 grid lg:mb-24 lg:grid-cols-2">
@@ -20,7 +22,7 @@ const Banner = ({
         </p>
 
         <div className="mt-12">
-          <button onClick={handleOnClick}>View stores nearby</button>
+          <button onClick={handleOnClick}>{buttonText}</button>
         </div>
       </div>
       <div className="absolute top-2 z-10 md:top-0 md:mt-12 md:pl-10 md:pt-0 lg:right-1/4 lg:flex lg:pl-20">
