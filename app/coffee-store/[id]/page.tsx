@@ -2,30 +2,32 @@ import React from 'react';
 import Link from 'next/link';
 import { fetchCoffeeStore, fetchCoffeeStores } from '@/lib/coffee-stores';
 import Image from 'next/image';
+import { CoffeeStoreType } from '@/types';
 
-async function getData(id: string) {
-  //mapbox api
-  return await fetchCoffeeStore(id);
+async function getData(id: string, queryId: string) {
+  return await fetchCoffeeStore(id, queryId);
 }
 
 export async function generateStaticParams() {
   const coffeeStores = await fetchCoffeeStores();
 
-  return coffeeStores.map((coffeeStore) => ({
-    id: coffeeStore.slug,
+  return coffeeStores.map((coffeeStore: CoffeeStoreType) => ({
+    id: coffeeStore.id.toString(),
   }));
 }
 
-export default async function Page(props: { params: { id: string } }) {
+export default async function Page(props: {
+  params: { id: string };
+  searchParams: { id: string };
+}) {
   const {
     params: { id },
+    searchParams: { id: queryId },
   } = props;
 
-  const coffeeStore = await getData(id);
+  const coffeeStore = await getData(id, queryId);
 
   const { name = '', address = '', imgUrl = '' } = coffeeStore;
-
-  console.log({ coffeeStore });
 
   return (
     <div className="h-full pb-80">
