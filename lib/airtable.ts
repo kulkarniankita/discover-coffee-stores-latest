@@ -62,3 +62,35 @@ export const createCoffeeStore = async (
     console.error('Error creating or finding a store', error);
   }
 };
+
+export const updateCoffeeStore = async (id: string) => {
+  try {
+    if (id) {
+      const records = await findRecordByFilter(id);
+      if (records.length !== 0) {
+        const record = records[0];
+        const updatedVoting = record.voting + 1;
+
+        const updatedRecords = await table.update([
+          {
+            id: record.recordId,
+            fields: {
+              voting: updatedVoting,
+            },
+          },
+        ]);
+
+        if (updatedRecords.length > 0) {
+          console.log('Created a store with id', id);
+          return getMinifiedRecords(updatedRecords);
+        }
+      } else {
+        console.log('Coffee store does not exist');
+      }
+    } else {
+      console.error('Store id is missing');
+    }
+  } catch (error) {
+    console.error('Error upvoting a coffee store', error);
+  }
+};
