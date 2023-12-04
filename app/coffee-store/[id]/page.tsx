@@ -9,7 +9,8 @@ async function getData(id: string, queryId: string) {
 }
 
 export async function generateStaticParams() {
-  const coffeeStores = await fetchCoffeeStores();
+  const TORONTO_LONG_LAT = '-79.3789680885594%2C43.653833032607096';
+  const coffeeStores = await fetchCoffeeStores(TORONTO_LONG_LAT, 6);
 
   return coffeeStores.map((coffeeStore: CoffeeStoreType) => ({
     id: coffeeStore.id.toString(),

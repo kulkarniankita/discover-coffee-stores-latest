@@ -6,7 +6,8 @@ import { CoffeeStoreType } from '@/types';
 
 async function getData() {
   //mapbox api
-  return await fetchCoffeeStores();
+  const TORONTO_LONG_LAT = '-79.3789680885594%2C43.653833032607096';
+  return await fetchCoffeeStores(TORONTO_LONG_LAT, 6);
 }
 
 export default async function Home() {
