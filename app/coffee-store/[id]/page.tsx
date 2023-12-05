@@ -60,7 +60,7 @@ export default async function Page(props: {
             width={740}
             height={360}
             className="max-h-[420px] min-w-full max-w-full rounded-lg border-2 sepia lg:max-w-[470px] "
-            alt={name}
+            alt={'Coffee Store Image'}
           />
         </div>
 
