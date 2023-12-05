@@ -32,7 +32,6 @@ const Banner = ({
           height={300}
           alt="hero image"
           priority={false}
-          className="h-[240px] md:h-[300px] lg:h-[320px] lg:w-[600px]"
         />
       </div>
     </div>
