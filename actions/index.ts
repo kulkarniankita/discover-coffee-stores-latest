@@ -4,11 +4,13 @@ import { updateCoffeeStore } from '@/lib/airtable';
 
 type State = {
   id: string;
+  voting: number;
 };
 
-export const upvoteAction = async (prevState: State) => {
-  console.log('upvote action');
+export const upvoteAction = async (prevState: State | undefined) => {
+  if (!prevState) return undefined;
 
+  console.log('upvote action');
   const { id } = prevState;
 
   const data = await updateCoffeeStore(id);
@@ -20,4 +22,5 @@ export const upvoteAction = async (prevState: State) => {
       id,
     };
   }
+  return prevState;
 };

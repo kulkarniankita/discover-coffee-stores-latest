@@ -4,7 +4,6 @@ import { useActionState } from 'react';
 import { upvoteAction } from '@/actions';
 import Image from 'next/image';
 
-// @ts-expect-error
 import { useFormStatus } from 'react-dom';
 
 export function SubmitButton() {
@@ -49,7 +48,7 @@ export default function Upvote({ voting, id }: { voting: number; id: string }) {
           height="24"
           alt="star icon"
         />
-        <p className="pl-2">{state.voting}</p>
+        <p className="pl-2">{state?.voting}</p>
       </div>
 
       <SubmitButton />
