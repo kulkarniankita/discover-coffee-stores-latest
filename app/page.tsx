@@ -11,7 +11,7 @@ async function getData() {
 }
 
 export default async function Home() {
-  const coffeeStores = await getData();
+  const coffeeStores = (await getData()) || [];
 
   return (
     <div className="mb-56">

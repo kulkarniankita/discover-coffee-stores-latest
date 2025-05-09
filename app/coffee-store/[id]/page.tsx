@@ -30,13 +30,14 @@ export async function generateStaticParams() {
 }
 
 export default async function Page(props: {
-  params: { id: string };
-  searchParams: { id: string };
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ id: string }>;
 }) {
-  const {
-    params: { id },
-    searchParams: { id: queryId },
-  } = props;
+  const params = await props.params;
+  const searchParams = await props.searchParams;
+
+  const { id } = params;
+  const { id: queryId } = searchParams;
 
   const coffeeStore = await getData(id, queryId);
 

@@ -34,7 +34,7 @@ export const fetchCoffeeStores = async (longLat: string, limit: number) => {
     const data = await response.json();
     const photos = await getListOfCoffeeStorePhotos();
 
-    return data.features.map((result: MapboxType, idx: number) =>
+    return data.features?.map((result: MapboxType, idx: number) =>
       transformCoffeeData(idx, result, photos)
     );
   } catch (error) {
